@@ -1,0 +1,21 @@
+SELECT
+  speed_before_braking,
+  braking_distance,
+  track_condition,
+  temperature,
+  tire_type,
+  tire_wear,
+  predicted_speed_after_corner
+FROM
+  ML.PREDICT(MODEL `my_dataset.f1_braking_model`,
+    (
+    SELECT
+      speed_before_braking,
+      braking_distance,
+      track_condition,
+      temperature,
+      tire_type,
+      tire_wear
+    FROM
+      `my_dataset.f1_telemetry_data`
+    ))
