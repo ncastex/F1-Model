@@ -1,0 +1,16 @@
+SELECT
+  *
+FROM
+  ML.EVALUATE(MODEL `my_dataset.f1_braking_model`,
+    (
+    SELECT
+      speed_before_braking,
+      braking_distance,
+      track_condition,
+      temperature,
+      tire_type,
+      tire_wear,
+      speed_after_corner AS label
+    FROM
+      `my_dataset.f1_telemetry_data`
+    ))
